@@ -4,17 +4,18 @@ import { ErrorMessage, Field } from "formik";
 import styled from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-html{
-  height: 100%;
+*{
+    /* margin: 0; */
+    padding: 0;
 }
+
   body {
     font-family: Arial, sans-serif;
     background-color:#E6EEFA;
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
     color:#05163E;
-    height: 100%;
-  }
+    height: 100vh;  }
  
 `;
 
@@ -46,10 +47,9 @@ export const Input = styled(Field)`
   }
 `;
 export const Container = styled.div`
-  max-width: 600px;
   width: 100%;
-  margin: auto;
-  padding: 20px;
+  max-width: 600px;
+  padding: 10px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
