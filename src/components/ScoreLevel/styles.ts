@@ -32,10 +32,10 @@ export const PathBase = styled.path`
 export const PathScore = styled.path<{
   $dasharray: number;
   $dashoffset: number;
-  $score: number;
+  $color: string;
 }>`
   fill: none;
-  stroke: ${({ $score }) => ($score < 50 ? "#339933" : "#ff3b30")};
+  stroke: ${({ $color }) => $color};
   stroke-width: 17px;
   stroke-linecap: round;
   stroke-dasharray: ${({ $dasharray }) => $dasharray};
@@ -63,6 +63,6 @@ export const Title = styled.h1<{ opacity: number }>`
   }
 `;
 
-export const Highlight = styled.span<{ $score: number }>`
-  color: ${({ $score }) => ($score < 50 ? "#339933" : "#ff3b30")};
+export const Highlight = styled.span<{ $color: string }>`
+  color: ${({ $color }) => $color};
 `;

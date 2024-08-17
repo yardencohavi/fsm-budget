@@ -24,19 +24,44 @@ const getExpenses = (expenses: TotalExpenses): Decimal => {
   const totalExpenses = livingExpensesTotal.plus(variableExpensesTotal);
   return totalExpenses;
 };
-
 const calculateScore = (
   incomes: Incomes,
   expenses: TotalExpenses
-): { score: number; surplus: number } => {
+): { score: number; color: string; message: string } => {
   const monthlyIncomes = getIncomes(incomes);
   const totalExpenses = getExpenses(expenses);
-  // Calculate the percentage of expenses relative to income
-  const percentageOfIncome = totalExpenses.div(monthlyIncomes).mul(100);
-  const surplus = monthlyIncomes.minus(totalExpenses).toNumber();
+  const wastePercentage = new Decimal(
+    totalExpenses.div(monthlyIncomes).mul(100)
+  ).toNumber();
+
+  let color: string;
+  let message: string;
+
+  if (monthlyIncomes.greaterThan(0)) {
+    if (wastePercentage > 75) {
+      color = "red";
+      message =
+        "Alert: You are wasting more than 75% of your income. This indicates poor financial management. Consider reducing expenses significantly to improve your financial health.";
+    } else if (wastePercentage > 50) {
+      color = "yellow";
+      message =
+        "Caution: You are wasting between 50% and 75% of your income. Your financial situation could be improved by cutting unnecessary expenses.";
+    } else {
+      color = "green";
+      message =
+        "Good job: You are wasting less than 50% of your income. Your financial management is on track, but continue to monitor and optimize your spending.";
+    }
+  } else {
+    // If income is zero or less
+    color = "red";
+    message =
+      "Critical: Your income is not sufficient to cover your expenses. Immediate financial adjustments are needed.";
+  }
+
   return {
-    score: percentageOfIncome.floor().toNumber(),
-    surplus,
+    score: Math.floor(wastePercentage),
+    color,
+    message,
   };
 };
 

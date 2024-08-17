@@ -12,9 +12,10 @@ import {
 
 interface ScoreLevelProps {
   limit: number;
+  color: string;
 }
 
-const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit }) => {
+const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit, color }) => {
   const dasharray = 293;
   const [dashoffset, setDashoffset] = useState(dasharray);
   const [score, setScore] = useState(0);
@@ -50,7 +51,7 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit }) => {
           <PathScore
             $dasharray={dasharray}
             $dashoffset={dashoffset}
-            $score={score}
+            $color={color}
             d="M12,105 A40,40 0 1,1 198,105"
           />
         </SvgElement>
@@ -58,7 +59,9 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit }) => {
       </SvgWrapper>
       <Title opacity={titleOpacity}>
         Your score is
-        <Highlight $score={score}>{score > 50 ? " low" : " high"}</Highlight>
+        <Highlight $color={color}>
+          {score >= 75 ? " high" : score >= 50 ? " medium" : " low"}
+        </Highlight>
       </Title>
     </Container>
   );
