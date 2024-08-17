@@ -1,0 +1,35 @@
+{
+  "budget":{
+  "incomes": {
+    "title": "Incomes",
+    "inputs": [
+      { "name": "salary", "isRequired": true },
+      { "name": "other", "isRequired": true }
+    ],
+    "nextTransition":"livingExpenses"
+  },
+  "livingExpenses": {
+    "title": "Living Expenses",
+    "inputs": [
+      { "name": "rent", "isRequired": true },
+      { "name": "mortgage", "isRequired": true },
+      { "name": "insurance", "isRequired": true }
+    ],
+    "nextTransition":"variableExpenses"
+
+  },
+  "variableExpenses": {
+    "title": "Variable Expenses",
+    "inputs": [
+      { "name": "groceries", "isRequired": true },
+      { "name": "sport", "isRequired": true },
+      { "name": "entertainment", "isRequired": true }
+    ],
+    "nextTransition":"summary"
+
+  },
+  "summary": {
+    "title": "Summary"
+  }
+}
+}
