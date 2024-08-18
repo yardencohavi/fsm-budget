@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/fsm-budget/static/js/main.5be92aa3.js",
+    "main.js": "/fsm-budget/static/js/main.6a84e914.js",
     "static/js/453.c001a7fa.chunk.js": "/fsm-budget/static/js/453.c001a7fa.chunk.js",
     "index.html": "/fsm-budget/index.html",
-    "main.5be92aa3.js.map": "/fsm-budget/static/js/main.5be92aa3.js.map",
+    "main.6a84e914.js.map": "/fsm-budget/static/js/main.6a84e914.js.map",
     "453.c001a7fa.chunk.js.map": "/fsm-budget/static/js/453.c001a7fa.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.5be92aa3.js"
+    "static/js/main.6a84e914.js"
   ]
 }
