@@ -43,6 +43,9 @@ export const PathScore = styled.path<{
   transition: stroke-dashoffset 0.5s ease;
 `;
 
+export const Subtitle = styled.p`
+  margin-top: 0;
+`;
 export const ScoreText = styled.div`
   position: absolute;
   left: 50%;

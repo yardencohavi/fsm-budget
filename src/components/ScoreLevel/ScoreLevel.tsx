@@ -8,25 +8,34 @@ import {
   Title,
   Highlight,
   Container,
+  Subtitle,
 } from "./styles";
 
 interface ScoreLevelProps {
   limit: number;
   color: string;
+  message: string;
+  highlightText: any;
 }
 
-const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit, color }) => {
+const ScoreLevel: React.FC<ScoreLevelProps> = ({
+  limit,
+  color,
+  message,
+  highlightText,
+}) => {
   const dasharray = 293;
   const [dashoffset, setDashoffset] = useState(dasharray);
   const [score, setScore] = useState(0);
   const [titleOpacity, setTitleOpacity] = useState(0);
 
+  console.log(dashoffset, "dashoffset", dasharray, "ds");
+
   useEffect(() => {
     let count = 0;
-    const maxLimit = Math.min(limit, 100); // Ensure limit doesn't exceed 100
 
     const interval = setInterval(() => {
-      if (count >= maxLimit) {
+      if (count === limit) {
         clearInterval(interval);
       } else {
         count += 1;
@@ -37,12 +46,15 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit, color }) => {
     setTimeout(() => setTitleOpacity(1), 500);
 
     return () => clearInterval(interval);
-  }, [limit]);
+  }, []);
 
   useEffect(() => {
-    setDashoffset(dasharray * ((100 - score) / 100));
+    if (score > 100) {
+      setDashoffset(0); // Full fill when score exceeds 100
+    } else {
+      setDashoffset(dasharray * ((100 - score) / 100)); // Regular calculation for score 100 or below
+    }
   }, [score, dasharray]);
-
   return (
     <Container>
       <SvgWrapper>
@@ -58,11 +70,11 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({ limit, color }) => {
         <ScoreText>{score}%</ScoreText>
       </SvgWrapper>
       <Title opacity={titleOpacity}>
-        Your score is
-        <Highlight $color={color}>
-          {score >= 75 ? " high" : score >= 50 ? " medium" : " low"}
-        </Highlight>
+        You are wasting
+        <Highlight $color={color}>{highlightText.withColor}</Highlight>
+        {highlightText.title}
       </Title>
+      <Subtitle>{message}</Subtitle>
     </Container>
   );
 };

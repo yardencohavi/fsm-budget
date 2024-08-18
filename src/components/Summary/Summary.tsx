@@ -10,7 +10,7 @@ const Summary = () => {
     (state: RootState) => state.fsm
   );
 
-  const { score, color, message } = calculateScore(incomes, {
+  const { score, color, message, highlightText } = calculateScore(incomes, {
     livingExpenses,
     variableExpenses,
   });
@@ -19,9 +19,8 @@ const Summary = () => {
     <Container>
       <Header>
         <h2>Summary</h2>
-        <p>{message}</p>
       </Header>
-      <ScoreLevel color={color} limit={score} />
+      <ScoreLevel highlightText={highlightText} message={message} color={color} limit={score} />
     </Container>
   );
 };
