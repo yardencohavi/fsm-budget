@@ -1,20 +1,18 @@
-import { RootState } from "../../store/store";
 import IncomesComponent from "../Incomes/Incomes";
 import LivingExpensesComponent from "../LivingExpenses/LivingExpenses";
 import VariableExpensesComponent from "../VariableExpenses/VariableExpenses";
 import Summary from "../Summary/Summary";
-import { useSelector } from "react-redux";
 import React from "react";
-import { BudgetForm } from "../../types";
+import { BudgetForm, Steps } from "../../types";
+import useFSM from "../../hooks/useFsm";
 
 interface StepsProps {
   data: BudgetForm;
 }
-const Steps: React.FC<StepsProps> = ({ data }) => {
-  const currentState = useSelector(
-    (state: RootState) => state.fsm.currentState
-  );
-  const componentMap = {
+const StepsComponent: React.FC<StepsProps> = ({ data }) => {
+  const { transition, currentState } = useFSM();
+
+  const componentMap: Record<Steps, React.FC<any>> = {
     incomes: IncomesComponent,
     livingExpenses: LivingExpensesComponent,
     variableExpenses: VariableExpensesComponent,
@@ -24,7 +22,7 @@ const Steps: React.FC<StepsProps> = ({ data }) => {
 
   const ComponentToRender = componentMap[currentState];
 
-  return <ComponentToRender currenStep={currenStep} />;
+  return <ComponentToRender transition={transition} currenStep={currenStep} />;
 };
 
-export default Steps;
+export default StepsComponent;

@@ -1,58 +1,44 @@
-import { Formik, Form } from "formik";
+import { FormikValues } from "formik";
 import { useDispatch } from "react-redux";
-import { setTransition, setVariableExpenses } from "../../store/fsmSlice";
-import { VariableExpenses } from "../../types";
-import {
-  Button,
-  Container,
-  ErrorText,
-  Input,
-  InputGroup,
-  Label,
-} from "../../styles/globalStyles";
-import { Props } from "../Incomes/Incomes";
-import { createValidationSchema } from "../../utils/validationSchema";
+import { setVariableExpenses } from "../../store/fsmSlice";
+import { StepForm, VariableExpenses } from "../../types";
 
-const VariableExpensesComponent: React.FC<Props> = ({ currenStep }) => {
+import BaseFormComponent from "../BaseFormComponent/BaseFormComponent";
+import { useFormHandler } from "../../hooks/useFormHandler";
+
+interface VariableExpensesComponentProps {
+  currenStep: StepForm;
+  transition: (step: string) => void;
+}
+const VariableExpensesComponent: React.FC<VariableExpensesComponentProps> = ({
+  currenStep,
+  transition,
+}) => {
   const dispatch = useDispatch();
 
-  return (
-    <Container>
-      <h2>{currenStep.title}</h2>
-      <Formik
-        initialValues={{ groceries: "", sport: "", entertainment: "" }}
-        validationSchema={createValidationSchema(currenStep.inputs || [])}
-        onSubmit={(values: {
-          groceries: string;
-          sport: string;
-          entertainment: string;
-        }) => {
-          const formattedValues: VariableExpenses = {
-            groceries: Number(values.groceries),
-            sport: Number(values.sport),
-            entertainment: Number(values.entertainment),
-          };
+  const onSubmit = (values: FormikValues) => {
+    const formattedValues: VariableExpenses = currenStep.inputs?.reduce(
+      (acc, input) => {
+        acc[input.name as keyof VariableExpenses] = Number(values[input.name]);
+        return acc;
+      },
+      {} as VariableExpenses
+    );
+    transition(currenStep.nextTransition);
+    dispatch(setVariableExpenses(formattedValues));
+  };
 
-          dispatch(setVariableExpenses(formattedValues));
-          dispatch(setTransition(currenStep.nextTransition));
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            {currenStep.inputs?.map((input) => (
-              <InputGroup key={input.name}>
-                <Label htmlFor={input.name}>{input.name}:</Label>
-                <Input type="text" name={input.name} />
-                <ErrorText name={input.name} component="div" />
-              </InputGroup>
-            ))}
-            <Button type="submit" disabled={isSubmitting}>
-              Next
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </Container>
+  const { initialValues, validationSchema } = useFormHandler({
+    currenStep,
+  });
+  return (
+    <BaseFormComponent
+      title={currenStep.title}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      inputs={currenStep.inputs}
+    />
   );
 };
 

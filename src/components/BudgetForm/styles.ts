@@ -7,3 +7,6 @@ export const Container = styled.div`
   padding: 30px 10px;
   gap: 50px;
 `;
+export const Title =styled.h1`
+  text-align: center;
+`

@@ -1,27 +1,22 @@
-import { useState } from "react";
-import FSM from "../fsm";
+import { useCallback, useState } from "react";
+import FSM from "../fsm/fsm";
+import { Steps } from "../types";
 
 const useFSM = () => {
-  const [fsm] = useState(new FSM());
-  const [formData, setFormData] = useState({
-    livingExpenses: {},
-    variableExpenses: {},
-  });
+  const [fsm] = useState(new FSM("incomes"));
+  const [currentState, setCurrentState] = useState<Steps>(fsm.getState());
 
-  const transition = (state: string, data: any = null) => {
-    if (data) {
-      setFormData((prevData) => ({
-        ...prevData,
-        ...data,
-      }));
-    }
-    fsm.transition(state as any);
-  };
+  const transition = useCallback(
+    (state: Steps) => {
+      fsm.transitionTo(state);
+      setCurrentState(fsm.getState());
+    },
+    [fsm]
+  );
 
   return {
-    currentState: fsm.getState(),
+    currentState,
     transition,
-    formData,
   };
 };
 

@@ -29,8 +29,6 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({
   const [score, setScore] = useState(0);
   const [titleOpacity, setTitleOpacity] = useState(0);
 
-  console.log(dashoffset, "dashoffset", dasharray, "ds");
-
   useEffect(() => {
     let count = 0;
 
@@ -61,6 +59,7 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({
         <SvgElement>
           <PathBase d="M12,105 A40,40 0 1,1 198,105" />
           <PathScore
+            data-testid="path-score"
             $dasharray={dasharray}
             $dashoffset={dashoffset}
             $color={color}
@@ -69,10 +68,11 @@ const ScoreLevel: React.FC<ScoreLevelProps> = ({
         </SvgElement>
         <ScoreText>{score}%</ScoreText>
       </SvgWrapper>
+
       <Title opacity={titleOpacity}>
-        You are wasting
+        {score > 0 && <span>You are wasting</span>}
         <Highlight $color={color}>{highlightText.withColor}</Highlight>
-        {highlightText.title}
+        <span>{highlightText.title}</span>
       </Title>
       <Subtitle>{message}</Subtitle>
     </Container>

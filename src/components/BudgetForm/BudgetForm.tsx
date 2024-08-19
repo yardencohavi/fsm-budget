@@ -1,6 +1,6 @@
-import { Container } from "./styles";
+import { Container, Title } from "./styles";
 import { useEffect, useState } from "react";
-import Steps from "../Steps/Steps";
+import StepsComponent from "../Steps/Steps";
 import { getBudgetFormData } from "../../api/api";
 import { BudgetForm } from "../../types";
 
@@ -19,8 +19,9 @@ const Budget = () => {
 
   return (
     <Container>
-      <h1>Budget management calculator</h1>
-      {data && <Steps data={data} />}
+      <Title>Budget management calculator</Title>
+      {data && <StepsComponent data={data} />}
+      {/* //add loader */}
     </Container>
   );
 };

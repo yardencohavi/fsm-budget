@@ -30,7 +30,18 @@ export type InputObj = {
 };
 export type StepForm = {
   title: string;
-  inputs?: InputObj[];
+  inputs: InputObj[];
   nextTransition: Steps;
 };
 export type BudgetForm = Record<Steps, StepForm>;
+
+export interface HighlightText {
+  withColor: string;
+  title: string;
+}
+
+export interface FinancialMessage {
+  color: string;
+  highlightText: HighlightText;
+  message: string;
+}

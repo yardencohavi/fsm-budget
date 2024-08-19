@@ -1,64 +1,42 @@
-import { Formik, Form } from "formik";
+import React from "react";
+import { setIncomes } from "../../store/fsmSlice";
 import { useDispatch } from "react-redux";
-import { setIncomes, setTransition } from "../../store/fsmSlice";
+import { FormikValues } from "formik";
+import BaseFormComponent from "../BaseFormComponent/BaseFormComponent";
 import { Incomes, StepForm } from "../../types";
-import {
-  Button,
-  Container,
-  ErrorText,
-  Input,
-  InputGroup,
-  Label,
-} from "../../styles/globalStyles";
-import { createValidationSchema } from "../../utils/validationSchema";
+import { useFormHandler } from "../../hooks/useFormHandler";
 
-export interface Props {
+interface IncomesFormProps {
   currenStep: StepForm;
+  transition: (step: string) => void;
 }
-
-const IncomesComponent: React.FC<Props> = ({ currenStep }) => {
+const IncomesForm: React.FC<IncomesFormProps> = ({
+  currenStep,
+  transition,
+}) => {
   const dispatch = useDispatch();
+  const onSubmit = (values: FormikValues) => {
+    const formattedValues: Incomes = currenStep.inputs?.reduce((acc, input) => {
+      acc[input.name as keyof Incomes] = Number(values[input.name]);
+      return acc;
+    }, {} as Incomes);
+    transition(currenStep.nextTransition);
+    dispatch(setIncomes(formattedValues));
+  };
+
+  const { initialValues, validationSchema } = useFormHandler({
+    currenStep,
+  });
 
   return (
-    <Container>
-      <h2>{currenStep.title}</h2>
-      <Formik
-        initialValues={{
-          salary: "",
-          other: "",
-          ...currenStep.inputs?.reduce(
-            (acc, input) => ({ ...acc, [input.name]: "" }),
-            {}
-          ),
-        }} // Initialize form fields dynamically
-        validationSchema={createValidationSchema(currenStep.inputs || [])}
-        onSubmit={(values) => {
-          const formattedValues: Incomes = {
-            salary: Number(values.salary),
-            other: Number(values.other),
-          };
-
-          dispatch(setIncomes(formattedValues));
-          dispatch(setTransition(currenStep.nextTransition));
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            {currenStep.inputs?.map((input) => (
-              <InputGroup key={input.name}>
-                <Label htmlFor={input.name}>{input.name}:</Label>
-                <Input type="text" name={input.name} />
-                <ErrorText name={input.name} component="div" />
-              </InputGroup>
-            ))}
-            <Button type="submit" disabled={isSubmitting}>
-              Next
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </Container>
+    <BaseFormComponent
+      title={currenStep.title}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+      inputs={currenStep.inputs}
+    />
   );
 };
 
-export default IncomesComponent;
+export default IncomesForm;
