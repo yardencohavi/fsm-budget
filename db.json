@@ -3,17 +3,17 @@
   "incomes": {
     "title": "Incomes",
     "inputs": [
-      { "name": "salary", "isRequired": true },
-      { "name": "other", "isRequired": true }
+      { "name": "Salary", "isRequired": true },
+      { "name": "Other", "isRequired": true }
     ],
     "nextTransition":"livingExpenses"
   },
   "livingExpenses": {
     "title": "Living Expenses",
     "inputs": [
-      { "name": "rent", "isRequired": true },
-      { "name": "mortgage", "isRequired": true },
-      { "name": "insurance", "isRequired": true }
+      { "name": "Rent", "isRequired": true },
+      { "name": "Mortgage", "isRequired": true },
+      { "name": "Insurance", "isRequired": true }
     ],
     "nextTransition":"variableExpenses"
 
@@ -21,9 +21,9 @@
   "variableExpenses": {
     "title": "Variable Expenses",
     "inputs": [
-      { "name": "groceries", "isRequired": true },
-      { "name": "sport", "isRequired": true },
-      { "name": "entertainment", "isRequired": true }
+      { "name": "Groceries", "isRequired": true },
+      { "name": "Sport", "isRequired": true },
+      { "name": "Entertainment", "isRequired": true }
     ],
     "nextTransition":"summary"
 
