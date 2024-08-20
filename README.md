@@ -13,13 +13,13 @@ The **Budget Management Calculator** is a React-based application that helps use
 - **Step-by-Step Form**: Guides users through inputs for income and expenses.
 - **State Management**: Uses Finite State Machine (FSM) for smooth transitions between form steps.
 - **Real-Time Validation**: Inputs are validated in real-time using Formik and Yup.
-- **Summary Calculation**: The summary step shows the percentage of money spent. For example, if the income is 3000 and the outcome is 1000, the percentage value displayed will be 33%.
+- **Summary Calculation**: The summary step shows the percentage of money spent.
 
 ## Technologies Used
 
 - **React & TypeScript**: Building a type-safe, scalable frontend.
 - **Styled Components**: For writing CSS-in-JS, allowing dynamic styling.
-- **Redux**: Centralized state management.
+- **Redux**: For state management.
 - **Formik & Yup**: Handling form logic and validation.
 - **JSON Server**: Mocking data for development and testing.
 - **Decimal.js**: Ensuring precise financial calculations.
