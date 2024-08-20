@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# Budget Management Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The **Budget Management Calculator** is a React-based application that helps users manage their finances by calculating and visualizing income vs. expenses. The application features a dynamic form process, where users input their income and various expenses, leading to a summary that highlights their spending efficiency.
 
-In the project directory, you can run:
+**Demo Link:** [Budget Management Calculator](https://yardencohavi.github.io/fsm-budget/)
 
-### `npm start`
+**Mock Data:** The application interacts with a mock server for data, hosted at [my-json-server](https://my-json-server.typicode.com/yardencohavi/backend-db).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Step-by-Step Form**: Guides users through inputs for income and expenses.
+- **State Management**: Uses Finite State Machine (FSM) for smooth transitions between form steps.
+- **Real-Time Validation**: Inputs are validated in real-time using Formik and Yup.
+- **Summary Calculation**: The summary step shows the percentage of money spent. For example, if the income is 3000 and the outcome is 1000, the percentage value displayed will be 33%.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React & TypeScript**: Building a type-safe, scalable frontend.
+- **Styled Components**: For writing CSS-in-JS, allowing dynamic styling.
+- **Redux**: Centralized state management.
+- **Formik & Yup**: Handling form logic and validation.
+- **JSON Server**: Mocking data for development and testing.
+- **Decimal.js**: Ensuring precise financial calculations.
+- **Jest & React Testing Library**: Implementing unit tests to ensure code reliability.
 
-### `npm run build`
+## How It Works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Incomes Step**: Enter your salary and any other sources of income.
+2. **Living Expenses**: Input essential living costs like rent, mortgage, and insurance.
+3. **Variable Expenses**: Provide details on variable costs, such as groceries, sports, and entertainment.
+4. **Summary**: Review the results, including the percentage of income spent based on the data provided.
