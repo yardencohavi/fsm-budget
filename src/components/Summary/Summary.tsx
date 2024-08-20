@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import ScoreLevel from "../ScoreLevel/ScoreLevel";
+import ScoreLevel from "./components/ScoreLevel/ScoreLevel";
 import calculateScore from "../../utils/calculateScore";
 import { Container } from "../../styles/globalStyles";
 import { Header } from "./styles";
@@ -20,7 +20,12 @@ const Summary = () => {
       <Header>
         <h2>Summary</h2>
       </Header>
-      <ScoreLevel highlightText={highlightText} message={message} color={color} limit={score} />
+      <ScoreLevel
+        highlightText={highlightText}
+        message={message}
+        color={color}
+        limit={score}
+      />
     </Container>
   );
 };

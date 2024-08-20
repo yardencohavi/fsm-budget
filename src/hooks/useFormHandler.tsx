@@ -6,8 +6,6 @@ interface FormHandlerProps {
 }
 
 export const useFormHandler = ({ currentStateForm }: FormHandlerProps) => {
-  console.log(currentStateForm, "currentStateForm");
-
   const initialValues =
     currentStateForm.inputs?.reduce(
       (acc, input) => ({ ...acc, [input.name]: "" }),

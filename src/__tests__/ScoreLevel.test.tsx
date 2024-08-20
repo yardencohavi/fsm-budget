@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import ScoreLevel from "../components/ScoreLevel/ScoreLevel";
+import ScoreLevel from "../components/Summary/components/ScoreLevel/ScoreLevel";
 
 describe("ScoreLevel Component", () => {
   it("initially displays score as 0% and updates to limit value over time", async () => {

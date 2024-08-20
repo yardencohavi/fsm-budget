@@ -10,7 +10,7 @@ import {
   Container,
   Subtitle,
 } from "./styles";
-import { HighlightText } from "../../types";
+import { HighlightText } from "../../../../types";
 
 interface ScoreLevelProps {
   limit: number;
