@@ -32,7 +32,7 @@ The **Budget Management Calculator** is a React-based application that helps use
 3. **Variable Expenses**: Provide details on variable costs, such as groceries, sports, and entertainment.
 4. **Summary**: Review the results, including the percentage of income spent based on the data provided.
 
-### Installation
+## Installation
 
 1. Clone the repository
 2. Run npm install
