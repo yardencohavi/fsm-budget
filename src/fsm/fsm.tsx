@@ -1,13 +1,13 @@
-import { Steps } from "../types";
+import { States } from "../types";
 
 class FSM {
-  private currentState: Steps;
+  private currentState: States;
 
-  constructor(state: Steps) {
+  constructor(state: States) {
     this.currentState = state;
   }
 
-  transitionTo(newState: Steps): void {
+  transitionTo(newState: States): void {
     if (this.canTransition(newState)) {
       this.currentState = newState;
     } else {
@@ -17,12 +17,12 @@ class FSM {
     }
   }
 
-  getState(): Steps {
+  getState(): States {
     return this.currentState;
   }
 
-  canTransition(state: Steps): boolean {
-    const validTransitions: Record<Steps, Steps[]> = {
+  canTransition(state: States): boolean {
+    const validTransitions: Record<States, States[]> = {
       incomes: ["livingExpenses"],
       livingExpenses: ["variableExpenses"],
       variableExpenses: ["summary"],

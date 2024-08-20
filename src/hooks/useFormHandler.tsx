@@ -1,18 +1,22 @@
-import { StepForm } from "../types";
+import { Form } from "../types";
 import { createValidationSchema } from "../utils/validationSchema";
 
 interface FormHandlerProps {
-  currenStep: StepForm;
+  currentStateForm: Form;
 }
 
-export const useFormHandler = ({ currenStep }: FormHandlerProps) => {
+export const useFormHandler = ({ currentStateForm }: FormHandlerProps) => {
+  console.log(currentStateForm, "currentStateForm");
+
   const initialValues =
-    currenStep.inputs?.reduce(
+    currentStateForm.inputs?.reduce(
       (acc, input) => ({ ...acc, [input.name]: "" }),
       {} as Record<string, string>
     ) || {};
 
-  const validationSchema = createValidationSchema(currenStep.inputs || []);
+  const validationSchema = createValidationSchema(
+    currentStateForm.inputs || []
+  );
 
   return {
     initialValues,

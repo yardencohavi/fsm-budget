@@ -1,7 +1,7 @@
 import * as Yup from "yup";
-import { InputObj } from "../types";
+import { InputField } from "../types";
 
-export const createValidationSchema = (inputFields: InputObj[]) => {
+export const createValidationSchema = (inputFields: InputField[]) => {
   const shape: Record<string, any> = {};
   inputFields.forEach((field) => {
     shape[field.name] = Yup.number()

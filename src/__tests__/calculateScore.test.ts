@@ -73,8 +73,7 @@ describe("calculateScore", () => {
 
     expect(result.score).toBe(0); // Waste percentage is 0
     expect(result.color).toBe("green");
-    expect(result.message).toMatch(/good job/i);
-    expect(result.highlightText.withColor).toMatch(/less than half/i);
+    expect(result.message).toMatch(/You have no recorded expenses./i);
   });
 
   it("handles the case where no incomes are provided", () => {

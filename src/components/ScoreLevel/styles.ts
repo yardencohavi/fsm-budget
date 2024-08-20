@@ -55,13 +55,13 @@ export const ScoreText = styled.div`
 `;
 
 export const Title = styled.h1<{ opacity: number }>`
-  font-size: 1.25rem; /* equivalent to text-xl */
+  font-size: 1.25rem;
   font-weight: bold;
   transition: opacity 0.5s ease;
   margin-top: 12px;
   opacity: ${({ opacity }) => opacity};
   @media (min-width: 768px) {
-    font-size: 2.25rem; /* equivalent to md:text-4xl */
+    font-size: 2.25rem;
   }
 `;
 

@@ -1,9 +1,9 @@
-import { InputObj } from "../types";
+import { InputField } from "../types";
 import { createValidationSchema } from "../utils/validationSchema";
 
 describe("createValidationSchema", () => {
   it("creates a schema with required fields", async () => {
-    const inputFields: InputObj[] = [
+    const inputFields: InputField[] = [
       { name: "salary", isRequired: true },
       { name: "bonus", isRequired: false },
     ];
@@ -23,7 +23,7 @@ describe("createValidationSchema", () => {
   });
 
   it("validates a schema with non-required fields", async () => {
-    const inputFields: InputObj[] = [
+    const inputFields: InputField[] = [
       { name: "salary", isRequired: false },
       { name: "bonus", isRequired: false },
     ];
@@ -43,7 +43,7 @@ describe("createValidationSchema", () => {
   });
 
   it("creates a schema that handles non-number values correctly", async () => {
-    const inputFields: InputObj[] = [
+    const inputFields: InputField[] = [
       { name: "income", isRequired: true },
       { name: "expenses", isRequired: false },
     ];
@@ -62,7 +62,7 @@ describe("createValidationSchema", () => {
   });
 
   it("returns a schema that enforces minimum values", async () => {
-    const inputFields: InputObj[] = [
+    const inputFields: InputField[] = [
       { name: "salary", isRequired: true },
       { name: "bonus", isRequired: false },
     ];

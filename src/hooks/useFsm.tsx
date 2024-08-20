@@ -1,18 +1,15 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import FSM from "../fsm/fsm";
-import { Steps } from "../types";
+import { States } from "../types";
 
 const useFSM = () => {
-  const [fsm] = useState(new FSM("incomes"));
-  const [currentState, setCurrentState] = useState<Steps>(fsm.getState());
+  const fsm = useRef(new FSM("incomes")).current;
+  const [currentState, setCurrentState] = useState<States>(fsm.getState());
 
-  const transition = useCallback(
-    (state: Steps) => {
-      fsm.transitionTo(state);
-      setCurrentState(fsm.getState());
-    },
-    [fsm]
-  );
+  const transition = useCallback((state: States) => {
+    fsm.transitionTo(state);
+    setCurrentState(fsm.getState());
+  }, []);
 
   return {
     currentState,

@@ -1,44 +1,40 @@
 import { FormikValues } from "formik";
 import { setLivingExpenses } from "../../store/fsmSlice";
 import BaseFormComponent from "../BaseFormComponent/BaseFormComponent";
-import { LivingExpenses, StepForm } from "../../types";
+import { LivingExpenses, FormComponentProps } from "../../types";
 import { useDispatch } from "react-redux";
 import { useFormHandler } from "../../hooks/useFormHandler";
 
-interface LivingExpensesComponentProps {
-  currenStep: StepForm;
-  transition: (step: string) => void;
-}
-const LivingExpensesComponent: React.FC<LivingExpensesComponentProps> = ({
-  currenStep,
+const LivingExpensesForm: React.FC<FormComponentProps> = ({
+  currentStateForm,
   transition,
 }) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values: FormikValues) => {
-    const formattedValues: LivingExpenses = currenStep.inputs?.reduce(
+    const formattedValues: LivingExpenses = currentStateForm.inputs?.reduce(
       (acc, input) => {
         acc[input.name as keyof LivingExpenses] = Number(values[input.name]);
         return acc;
       },
       {} as LivingExpenses
     );
-    transition(currenStep.nextTransition);
+    transition(currentStateForm.nextTransition);
     dispatch(setLivingExpenses(formattedValues));
   };
   const { initialValues, validationSchema } = useFormHandler({
-    currenStep,
+    currentStateForm,
   });
 
   return (
     <BaseFormComponent
-      title={currenStep.title}
+      title={currentStateForm.title}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      inputs={currenStep.inputs}
+      inputs={currentStateForm.inputs}
     />
   );
 };
 
-export default LivingExpensesComponent;
+export default LivingExpensesForm;

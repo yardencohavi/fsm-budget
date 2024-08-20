@@ -1,4 +1,4 @@
-export type Steps =
+export type States =
   | "incomes"
   | "livingExpenses"
   | "variableExpenses"
@@ -24,16 +24,16 @@ export interface Incomes {
   other?: number;
 }
 
-export type InputObj = {
+export type InputField = {
   name: string;
   isRequired: boolean;
 };
-export type StepForm = {
+export type Form = {
   title: string;
-  inputs: InputObj[];
-  nextTransition: Steps;
+  inputs: InputField[];
+  nextTransition: States;
 };
-export type BudgetForm = Record<Steps, StepForm>;
+export type BudgetForm = Record<States, Form>;
 
 export interface HighlightText {
   withColor: string;
@@ -44,4 +44,8 @@ export interface FinancialMessage {
   color: string;
   highlightText: HighlightText;
   message: string;
+}
+export interface FormComponentProps {
+  currentStateForm: Form;
+  transition: (state: string) => void;
 }

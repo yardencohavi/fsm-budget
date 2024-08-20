@@ -3,38 +3,37 @@ import { setIncomes } from "../../store/fsmSlice";
 import { useDispatch } from "react-redux";
 import { FormikValues } from "formik";
 import BaseFormComponent from "../BaseFormComponent/BaseFormComponent";
-import { Incomes, StepForm } from "../../types";
+import { Incomes, FormComponentProps } from "../../types";
 import { useFormHandler } from "../../hooks/useFormHandler";
 
-interface IncomesFormProps {
-  currenStep: StepForm;
-  transition: (step: string) => void;
-}
-const IncomesForm: React.FC<IncomesFormProps> = ({
-  currenStep,
+const IncomesForm: React.FC<FormComponentProps> = ({
+  currentStateForm,
   transition,
 }) => {
   const dispatch = useDispatch();
   const onSubmit = (values: FormikValues) => {
-    const formattedValues: Incomes = currenStep.inputs?.reduce((acc, input) => {
-      acc[input.name as keyof Incomes] = Number(values[input.name]);
-      return acc;
-    }, {} as Incomes);
-    transition(currenStep.nextTransition);
+    const formattedValues: Incomes = currentStateForm.inputs?.reduce(
+      (acc, input) => {
+        acc[input.name as keyof Incomes] = Number(values[input.name]);
+        return acc;
+      },
+      {} as Incomes
+    );
+    transition(currentStateForm.nextTransition);
     dispatch(setIncomes(formattedValues));
   };
 
   const { initialValues, validationSchema } = useFormHandler({
-    currenStep,
+    currentStateForm,
   });
 
   return (
     <BaseFormComponent
-      title={currenStep.title}
+      title={currentStateForm.title}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-      inputs={currenStep.inputs}
+      inputs={currentStateForm.inputs}
     />
   );
 };

@@ -11,7 +11,6 @@ jest.mock("../api/api");
 
 const store = configureStore({
   reducer: { fsm: fsmReducer },
-  // middleware: [thunk],
 });
 const mockData: BudgetForm = {
   incomes: {

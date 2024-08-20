@@ -8,13 +8,13 @@ import {
   InputGroup,
   Label,
 } from "../../styles/globalStyles";
-import { InputObj } from "../../types";
+import { InputField } from "../../types";
 
 interface BaseFormProps {
   initialValues: object;
   validationSchema: object;
   onSubmit: (values: FormikValues) => void;
-  inputs: InputObj[];
+  inputs: InputField[];
   title: string;
 }
 
@@ -38,7 +38,11 @@ const BaseFormComponent: React.FC<BaseFormProps> = ({
             {inputs.map((input) => (
               <InputGroup key={input.name}>
                 <Label htmlFor={input.name}>{input.name}:</Label>
-                <Input data-testid={`input-${input.name}`} type="text" name={input.name} />
+                <Input
+                  data-testid={`input-${input.name}`}
+                  type="text"
+                  name={input.name}
+                />
                 <ErrorText name={input.name} component="div" />
               </InputGroup>
             ))}

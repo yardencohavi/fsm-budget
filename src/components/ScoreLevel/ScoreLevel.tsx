@@ -10,12 +10,13 @@ import {
   Container,
   Subtitle,
 } from "./styles";
+import { HighlightText } from "../../types";
 
 interface ScoreLevelProps {
   limit: number;
   color: string;
   message: string;
-  highlightText: any;
+  highlightText: HighlightText;
 }
 
 const ScoreLevel: React.FC<ScoreLevelProps> = ({
