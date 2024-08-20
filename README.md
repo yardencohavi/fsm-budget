@@ -32,39 +32,9 @@ The **Budget Management Calculator** is a React-based application that helps use
 3. **Variable Expenses**: Provide details on variable costs, such as groceries, sports, and entertainment.
 4. **Summary**: Review the results, including the percentage of income spent based on the data provided.
 
-   ## Installation
+### Installation
 
-To set up the project locally, follow these steps:
-
-1. **Clone the Repository**:
-
-   Open your terminal and run the following command to clone the repository:
-
-   ```bash
-   git clone https://github.com/yardencohavi/fsm-budget.git
-   cd fsm-budget
-
-Install Dependencies:
-
-Install the necessary packages using npm:
-
-bash
-Copy code
-npm install
-Run the Application Locally:
-
-Start the development server to run the application:
-
-bash
-Copy code
-npm start
-Run the JSON Server:
-
-In a separate terminal window, start the JSON server to serve mock data:
-
-bash
-Copy code
-npm run json-server
-Access the Application:
-
-Open your browser and navigate to http://localhost:3000 to view the application.
+1. Clone the repository
+2. Run npm install
+3. Run npm start
+4. Open your browser and navigate to http://localhost:3000 to view the application.
